@@ -42,9 +42,12 @@ function New-MoodleUser {
         # Generate a password and email it to the new user.
         [Parameter(Mandatory,ParameterSetName='generatedpassword')][switch][bool] $GeneratePassword,
 
+        # Don't set a password, for use with external identity providers via OAUTH2.
+        [Parameter(Mandatory,ParameterSetName='nopassword')][switch][bool] $NoPassword,
+
         # The user's authentication type.
         [Parameter(Mandatory)]
-        [ValidateSet('Manual','LDAP','SAML2','OIDC')]
+        [ValidateSet('Manual','LDAP','SAML2','OIDC', 'OAUTH2')]
         [string]$Auth,
 
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)][string]$UserName,
